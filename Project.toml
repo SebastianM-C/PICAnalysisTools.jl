@@ -3,6 +3,15 @@ uuid = "049d77de-c438-40ac-b6d1-f1d179569bd2"
 authors = ["Sebastian Micluța-Câmpeanu <m.c.sebastian95@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+FileTrees = "72696420-646e-6120-6e77-6f6420746567"
+NumericalIntegration = "e7bfaba1-d571-5449-8927-abc22e82249b"
+PICDataStructures = "cb18667b-f199-4b8b-b886-9916fef47a26"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+ThreadsX = "ac1d9e8a-700a-412c-b207-f0111f4b6c0d"
+Transducers = "28d57a85-8fef-5791-bfe6-a80928e7c999"
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
+
 [compat]
 julia = "1"
 
