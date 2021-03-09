@@ -13,6 +13,7 @@ Transducers = "28d57a85-8fef-5791-bfe6-a80928e7c999"
 Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 
 [compat]
+Transducers = "0.4"
 ThreadsX = "0.1"
 PICDataStructures = "0.1"
 Unitful = "1.6"
