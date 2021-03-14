@@ -20,6 +20,12 @@ function indexof(apparitions, haystack, n)
     return found
 end
 
+"""
+    track_particles(sim, idxs; species="electron")
+
+Track the particles with the initial index `idx` and species given
+by the `species` argument in the simulation `sim`.
+"""
 function track_particles(sim, idxs; species="electron")
     n_total = get_npart(sim[1], species)
     n_searched = length(idxs)

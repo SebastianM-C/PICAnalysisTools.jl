@@ -1,6 +1,12 @@
 approx_target_size(::ScalarVariable) = 10^6
 approx_target_size(::ScalarField) = 160
 
+"""
+    approximate_field(f::AbstractPICDataStructure, sz::Int=approx_target_size(f))
+
+Approximate the given AbstractPICDataStructure `f` such that no dimension exceeds `sz`.
+If the input datastructure has units, they will be stripped.
+"""
 function approximate_field(f::AbstractPICDataStructure, sz::Int=approx_target_size(f))
     if unit(eltype(f)) ≠ NoUnits
         @debug "Removing units"
