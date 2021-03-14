@@ -1,3 +1,9 @@
+"""
+   initial_cube(sim, l=100u"nm"; species="electron")
+
+Select a cube of lenght `l` of the given `species` at the start
+of the simulation `sim`.
+"""
 function initial_cube(sim, l=100u"nm"; species="electron")
     file = sim[1]
     r = file["grid/$species"]

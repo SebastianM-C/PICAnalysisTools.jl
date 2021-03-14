@@ -17,3 +17,20 @@ After that, you can install the package with
 ```
 ]add PICAnalysisTools
 ```
+
+## Quick start
+
+```julia
+using SDFResults
+using PICAnalysisTools
+
+dir = "epoch_simulation"
+sim = read_simulation(dir)
+file = sim[2]
+
+Ex = file[:ex]
+size(Ex)
+
+Ex_approx = approximate_field(Ex)
+size(Ex)
+```
