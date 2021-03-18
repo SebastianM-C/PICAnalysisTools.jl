@@ -8,7 +8,7 @@ Approximate the given AbstractPICDataStructure `f` such that no dimension exceed
 If the input datastructure has units, they will be stripped.
 """
 function approximate_field(f::AbstractPICDataStructure, sz::Int=approx_target_size(f))
-    if unit(eltype(f)) ≠ NoUnits
+    if unit(recursive_bottom_eltype(f)) ≠ NoUnits
         @debug "Removing units"
         approximate_field(ustrip(f), sz)
     else

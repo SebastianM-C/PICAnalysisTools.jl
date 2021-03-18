@@ -5,6 +5,7 @@ export track_particles, initial_cube,
     mean_quantity
 
 using PICDataStructures
+using RecursiveArrayTools
 using Unitful
 using FileTrees
 using StaticArrays
