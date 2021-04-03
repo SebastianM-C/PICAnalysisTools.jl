@@ -1,4 +1,4 @@
-approx_target_size(::ScalarVariable) = 10^6
+approx_target_size(::ScalarVariable) = 7*10^5
 approx_target_size(::ScalarField) = 160
 
 """
