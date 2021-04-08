@@ -12,6 +12,8 @@ using FileTrees
 using StaticArrays
 using NumericalIntegration
 using Transducers, ThreadsX
+using Statistics
+using ProgressLogging
 
 include("tracking.jl")
 include("approximate.jl")
