@@ -1,22 +1,17 @@
-approx_target_size(::ScalarVariable) = 7*10^5
-approx_target_size(::ScalarField) = 160
+approx_target_size(::Type{T}) where T = approx_target_size(domain_discretization(T))
+approx_target_size(::ParticleGrid) = 7*10^5
+approx_target_size(::LatticeGrid) = 160
 
 """
-    approximate_field(f::AbstractPICDataStructure, sz::Int=approx_target_size(f))
+    downsample_approx(f, sz::Int=approx_target_size(f))
 
-Approximate the given AbstractPICDataStructure `f` such that no dimension exceeds `sz`.
-If the input datastructure has units, they will be stripped.
+Approximate the given input `f` using `downsample` such that no dimension exceeds `sz`.
 """
-function approximate_field(f::AbstractPICDataStructure, sz::Int=approx_target_size(f))
-    if unit(recursive_bottom_eltype(f)) ≠ NoUnits
-        @debug "Removing units"
-        approximate_field(ustrip(f), sz)
-    else
-        largest_dim = maximum(size(f))
-        factor = largest_dim ÷ sz
-        factor == 0 && return f
-        target_size = map(i->i÷factor, size(f))
-        @debug "Resizing to size $target_size from $(size(f))"
-        downsample(f, target_size...)
-    end
+function downsample_approx(f::T, sz::Int=approx_target_size(T)) where T
+    largest_dim = maximum(size(f))
+    factor = largest_dim ÷ sz
+    factor == 0 && return f
+    target_size = map(i->i÷factor, size(f))
+    @debug "Resizing to size $target_size from $(size(f))"
+    downsample(f, target_size...)
 end

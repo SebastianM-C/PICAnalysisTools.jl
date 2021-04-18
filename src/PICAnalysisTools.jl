@@ -1,7 +1,7 @@
 module PICAnalysisTools
 
 export track_particles, initial_cube,
-    approximate_field,
+    downsample_approx,
     mean_quantity, phase_space_mean
 
 using PICDataStructures
