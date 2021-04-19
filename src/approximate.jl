@@ -1,6 +1,11 @@
-approx_target_size(::Type{T}) where T = approx_target_size(domain_discretization(T))
-approx_target_size(::ParticleGrid) = 7*10^5
-approx_target_size(::LatticeGrid) = 160
+function approx_target_size(::Type{T}) where T
+    approx_target_size(domain_discretization(T), scalarness(T))
+end
+approx_target_size(::ParticleGrid, ::ScalarQuantity) = 7*10^5
+approx_target_size(::LatticeGrid{2}, ::ScalarQuantity) = 160
+approx_target_size(::LatticeGrid{3}, ::ScalarQuantity) = 120
+approx_target_size(::LatticeGrid{2}, ::VectorQuantity) = 25
+approx_target_size(::LatticeGrid{3}, ::VectorQuantity) = 15
 
 """
     downsample_approx(f, sz::Int=approx_target_size(f))
