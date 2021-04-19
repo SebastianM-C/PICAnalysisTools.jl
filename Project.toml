@@ -1,7 +1,7 @@
 name = "PICAnalysisTools"
 uuid = "049d77de-c438-40ac-b6d1-f1d179569bd2"
 authors = ["Sebastian Micluța-Câmpeanu <m.c.sebastian95@gmail.com> and contributors"]
-version = "0.1.1"
+version = "0.2.0"
 
 [deps]
 FileTrees = "72696420-646e-6120-6e77-6f6420746567"
