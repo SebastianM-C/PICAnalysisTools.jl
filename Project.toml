@@ -18,7 +18,7 @@ Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 [compat]
 FileTrees = "0.2, 0.3"
 NumericalIntegration = "0.3"
-PICDataStructures = "0.1, 0.2, 0.3, 0.4"
+PICDataStructures = "0.1, 0.2, 0.3, 0.4, 0.5"
 ProgressLogging = "0.1"
 RecursiveArrayTools = "2.11"
 StaticArrays = "1.0"
