@@ -1,11 +1,12 @@
 module PICAnalysisTools
 
-export track_particles, initial_cube,
+export apply_analytic, analytic_slice,
+    track_particles, initial_cube,
     downsample_approx,
     mean_quantity, phase_space_mean
 
 using PICDataStructures
-using PICDataStructures: dir_to_idx
+using PICDataStructures: approx_target_size, dropgriddims
 using RecursiveArrayTools
 using Unitful
 using FileTrees
@@ -15,6 +16,7 @@ using Transducers, ThreadsX
 using Statistics
 using ProgressLogging
 
+include("analytic.jl")
 include("tracking.jl")
 include("statistics.jl")
 
