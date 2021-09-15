@@ -1,8 +1,8 @@
-function apply_analytic(f, grid, t, laser, x₀, y₀, z₀)
+function apply_analytic(f, grid, t, laser, x₀, y₀, z₀, f_unit)
     mapgrid(grid) do (x,y,z)
         r = SVector{3}(x-x₀, y-y₀, z-z₀)
 
-        f(r, t, laser)
+        f(r, t, laser) .|> f_unit
     end
 end
 
@@ -24,19 +24,18 @@ function apply_analytic(f, grid, t, laser;
     end
     sz = approx_target_size(domain_discretization(typeof(grid)), _scalarness)
     grid = downsample_grid ? downsample(grid, approx_size=sz) : grid
-    data = apply_analytic(f, grid, t, laser, x₀, y₀, z₀)
+    data = apply_analytic(f, grid, t, laser, x₀, y₀, z₀, f_unit)
 
-    u_data = map(x->uconvert.(f_unit, x), data)
     if _scalarness === ScalarQuantity()
-        ScalarField(u_data, grid)
+        ScalarField(data, grid)
     else
-        # TODO get component names form the grid
-        VectorField(u_data, grid, (:x, :y, :z))
+        VectorField(data, grid)
     end
 end
 
 function analytic_slice(f, grid, t, laser, dir, slice_location;
     downsample_grid=false,
+    full = false,
     f_unit,
     x₀=zero(recursive_bottom_eltype(grid)),
     y₀=zero(recursive_bottom_eltype(grid)),
@@ -46,6 +45,10 @@ function analytic_slice(f, grid, t, laser, dir, slice_location;
     grid_slice = selectdim(grid, dir, slice_location)
     slice = apply_analytic(f, grid_slice, t, laser;
         downsample_grid, f_unit, x₀, y₀, z₀)
-    result = dropgriddims(dropdims(slice, dims=dir), dims=dir)
+    if full
+        result = getindex(slice; NamedTuple{(dir,)}(slice_location)...)
+    else
+        result = dropgriddims(dropdims(slice, dims=dir), dims=dir)
+    end
     downsample_grid ? downsample(result) : result
 end
